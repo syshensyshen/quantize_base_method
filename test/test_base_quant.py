@@ -5,7 +5,7 @@ LastEditTime: 2024-04-24 00:48:02
 '''
 import torch
 from utils import histogram
-from operators.base_quant import quant, dequant, get_scale
+from operators.base_quant_op import quant, dequant, get_scale
 
 SYMMETRIC = True
 

@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F 
 import numpy as np
 
-from error import CosineSimiarity
+from operators.similarity import CosineSimiarity
 
 qbit = 8
 symquant = True

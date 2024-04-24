@@ -1,11 +1,16 @@
+'''
+Author: WANG CHENG
+Date: 2024-04-24 20:36:59
+LastEditTime: 2024-04-24 21:01:14
+'''
 
 import numpy as np 
 import torch
 import copy
 
-class L1Simiarity(object):
+class L1Similarity(object):
     def __init__(self, **kwargs):
-        super(L1Simiarity, self).__init__()
+        super(L1Similarity, self).__init__()
         self.eps = 1e-5
 
     def __call__(self, simulation_data, true_data):
@@ -18,9 +23,9 @@ class L1Simiarity(object):
         rate = torch.abs(diff).sum() * 100 / (sum + self.eps)
         return np.float32(rate)
 
-class L2Simiarity(object):
+class L2Similarity(object):
     def __init__(self, **kwargs):
-        super(L2Simiarity, self).__init__()
+        super(L2Similarity, self).__init__()
         self.eps = 1e-5
 
     def __call__(self, simulation_data, true_data):
@@ -33,9 +38,9 @@ class L2Simiarity(object):
         rate = torch.square(diff).sum() * 100 / (sum + self.eps)
         return np.float32(rate)
 
-class CosineSimiarity(object):
+class CosineSimilarity(object):
     def __init__(self, **kwargs):
-        super(CosineSimiarity, self).__init__()
+        super(CosineSimilarity, self).__init__()
         self.eps = 1e-5
        
     def __call__(self, simulation_data, true_data):

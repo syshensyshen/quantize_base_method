@@ -1,16 +1,26 @@
 import numpy as np
 import torch
 
-qbit = 8
-symquant = True
-if symquant:
-    qmin = -128
-    qmax = 127
-    datatype = np.int8
-else:
-    qmin = 0
-    qmax = 255
-    datatype = np.uint8
+
+__all__ = [
+    "bit8_absmax_quantize",
+    "bit8_zeropoint_quantize",
+    "get_scale",
+    "get_shif_scale",
+    "quant",
+    "dequant"
+]
+
+# qbit = 8
+# symquant = True
+# if symquant:
+#     qmin = -128
+#     qmax = 127
+#     datatype = np.int8
+# else:
+#     qmin = 0
+#     qmax = 255
+#     datatype = np.uint8
     
 def shift_bits(x, shift):
     if shift > 0:
