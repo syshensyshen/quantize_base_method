@@ -71,3 +71,10 @@ def dequant(data, so, zeropoint):
     fdata = (data - zeropoint) * so
     
     return fdata
+
+def conv_w_split(data_pad_out):
+    H, W, C_in, C_out = data_pad_out.shape
+    Csize, Ksize = 8, 8
+    # 0: H, 1: W, 2: C//self.Csize, 3: self.Csize, 4: N//Ksize, 5: Ksize
+    new_data = data_pad_out.reshape(H, W, C_in//Csize, Csize, C_out//Ksize, Ksize)
+    new_data = np.transpose(new_data, (4,2,0,1,5,3))
