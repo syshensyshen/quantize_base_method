@@ -9,7 +9,7 @@ import torch.nn.functional as F
 import numpy as np
 
 from operators.base_quant_op import quant, dequant, get_scale
-from operators.pooling_op import split_avg_pool, quant_comb, quant_split
+from operators.pooling_op import split_avg_pool, quant_avgpool_comb, quant_avgpool_split
 from operators.similarity_op import CosineSimilarity
 
 
@@ -28,10 +28,10 @@ so, _ = get_scale(out)
 qa_split_pool_1 = split_avg_pool(data)
 print("cosine error is: ", CosineSimilarity()(out, qa_split_pool_1.numpy()))
 
-qa_comb_output = quant_comb(qa, si, so).astype(np.float32)
+qa_comb_output = quant_avgpool_comb(qa, si, so).astype(np.float32)
 print("cosine error is: ", CosineSimilarity()(dequant(qa_comb_output, so, 0), out))
 
-qa_split_1 = quant_split(qa, si, so).astype(np.float32)
+qa_split_1 = quant_avgpool_split(qa, si, so).astype(np.float32)
 print("cosine error is: ", CosineSimilarity()(dequant(qa_split_1, so, 0), out))
 
-# print("cosine error is: ", CosineSimiarity()(dequant(qa_max_pool.numpy(), si, 0), data_max_pool.numpy()))
+# print("cosine error is: ", CosineSimilarity()(dequant(qa_max_pool.numpy(), si, 0), data_max_pool.numpy()))
