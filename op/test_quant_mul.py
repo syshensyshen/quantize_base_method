@@ -66,7 +66,7 @@ if __name__ == "__main__":
     
     qa = quant(a, si, zi)
     qb = quant(b, sk, zk)
-    data = np.int32(qa) * np.int32(qb)
+    data = np.int16(qa) * np.int16(qb)
     data = (shift_bits(data, out_shift) * out_scale) >> 8
     qc = dequant(data, so, zo)
     error = np.sum(np.abs(qc - c)) / np.sum(c)
